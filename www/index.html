@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WASA Leak Reporter</title>
+    <link rel="stylesheet" href="jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+    <!-- link rel="stylesheet" href="css/my.css" / -->
+    <link rel="stylesheet" href="css/app.css" />
+
+    <script src="jquery/1.7.1/jquery.min.js"></script>
+    <script src="jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/cordova-2.0.0.js"></script>
+    <script src="js/app.js"></script>
+    <!-- script src="js/my.js"></script -->
+
+  </head>
+  <body onload="init();">
+    <!-- Home -->
+    <div data-role="page" id="home">
+    
+      <div data-theme="b" data-role="header" data-position="fixed"><h3>WASA Leak Reporter</h3>
+          <a data-role="button" data-transition="none" href="javascript:exitApp()" data-icon="delete"
+             data-iconpos="left" class="ui-btn-right">Exit</a>          
+      </div>
+	  
+      <div data-role="content" style="padding: 15px">
+        <ul data-role="listview" data-divider-theme="b" data-inset="true">
+          <li data-role="list-divider" role="heading">
+            Recommended Steps
+          </li>
+          <li data-theme="c">
+            <a href="#contact" data-transition="none">
+              1. Verify contact details
+            </a>
+          </li>
+          <li data-theme="c">
+            <a href="#location" data-transition="none">
+              2. Verify location
+            </a>
+          </li>
+        </ul>
+
+        <a data-role="button" data-transition="none" data-theme="b" href="#page1" data-icon="gear" data-iconpos="left">
+          Report Leak
+        </a>
+        
+        <ul data-role="listview" data-divider-theme="b" data-inset="true">
+          <li data-role="list-divider" role="heading">
+            Optional Steps
+          </li>
+          <li data-theme="c">
+            <a href="#picture" data-transition="none">
+              a. Take picture of leak
+            </a>
+          </li>
+          <li data-theme="c">
+            <a href="#comment" data-transition="none">
+              b. Include additional comment
+            </a>
+          </li>
+        </ul>
+
+        <ul data-role="listview" data-divider-theme="b" data-inset="true">
+          <li data-role="list-divider" role="heading">
+            Information
+          </li>
+          <li data-theme="c">
+            <a href="#hotline" data-transition="none">
+              Hotline
+            </a>
+          </li>
+          <li data-theme="c">
+            <a href="#about" data-transition="none">
+              About
+            </a>
+          </li>
+        </ul>
+
+        <ul data-role="listview" data-divider-theme="b" data-inset="true">
+          <li data-role="list-divider" role="heading">
+            Advanced
+          </li>
+          <li data-theme="c">
+            <a href="#options" data-transition="none">
+              Options
+            </a>
+          </li>
+          <li data-theme="c">
+            <a href="#diagnostics" data-transition="none">
+              Diagnostics
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+      
+    <div data-role="page" id="contact" data-add-back-btn="true">
+      <div data-theme="b" data-role="header" data-position="fixed">
+          <h3>
+              WASA Leak Reporter
+          </h3>
+          <a data-role="button" data-transition="none" href="javascript:exitApp()" data-icon="delete"
+             data-iconpos="left" class="ui-btn-right">Exit</a>          
+      </div>
+      <div data-role="content" style="padding: 15px">
+          <h2>
+              Contact Details
+          </h2>
+          <form method="get" action="#"  enctype="multipart/form-data">
+                <div data-role="fieldcontain">
+                        <label for="textinputemail">
+                            E-mail
+                        </label>
+                        <input id="textinputemail" name="textinputemail" value="" type="text" />
+                </div>
+				<div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="textinputname">
+                            Name
+                        </label>
+                        <input id="textinputname" name="textinputname" value="" type="text" />
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="textinputcontactno">
+                            Contact number (optional)
+                        </label>
+                        <input id="textinputcontactno" name="textinputcontactno" value="" type="tel" />
+                    </fieldset>
+                </div>          
+         </form>
+        <a data-role="button" data-transition="none" data-theme="b" href="#location" data-icon="check" data-iconpos="left">
+          My contact details are correct
+        </a>
+        <a data-role="button" data-transition="none" data-theme="b" href="#home" data-icon="home" data-iconpos="left">
+          Return to Home
+        </a>      
+          
+      </div>
+    </div>    
+    
+    <div data-role="page" id="location" data-add-back-btn="true">
+      <div data-theme="b" data-role="header" data-position="fixed">
+          <h3>
+              WASA Leak Reporter
+          </h3>
+          <a data-role="button" data-transition="none" href="javascript:exitApp()" data-icon="delete"
+             data-iconpos="left" class="ui-btn-right">Exit</a>          
+      </div>
+      <div data-role="content" style="padding: 15px">
+          <h2>
+              Location
+          </h2>
+        <img src="" id="mapimage" alt="image" style="width: 288px;visibility:hidden;display:none;border: 1px solid #b8b8b8;position: relative;">
+        <span id="mapstatus"></span>        
+        <a data-role="button" data-transition="none" data-theme="b" data-icon="refresh" href="javascript:getLocation()" data-iconpos="left">
+          Re-acquire my location
+        </a>
+          
+         <a data-role="button" data-transition="none" data-theme="b" href="#home" data-icon="gear" data-iconpos="left">
+          Report Leak
+        </a>      
+        
+         <a data-role="button" data-transition="none" data-theme="b" href="#picture" data-icon="arrow-r" data-iconpos="left">
+          Include a Picture
+        </a>      
+
+         <a data-role="button" data-transition="none" data-theme="b" href="#comment" data-icon="arrow-r" data-iconpos="left">
+          Include a Comment
+        </a>      
+
+        <a data-role="button" data-transition="none" data-theme="b" href="#home" data-icon="home" data-iconpos="left">
+          Return to Home
+        </a>      
+      </div>
+    </div>    
+    
+    <div data-role="page" id="picture" data-add-back-btn="true">
+      <div data-theme="b" data-role="header" data-position="fixed">
+          <h3>
+              WASA Leak Reporter
+          </h3>
+          <a data-role="button" data-transition="none" href="javascript:exitApp()" data-icon="delete"
+             data-iconpos="left" class="ui-btn-right">Exit</a>          
+      </div>
+      <div data-role="content" style="padding: 15px">
+          <h2>
+              Picture
+          </h2>
+          <img src="" id="camera_image" alt="image" style="width: 288px;visibility:hidden;display:none;border: 1px solid #b8b8b8;position: relative;">
+     		<span id="camera_status"></span>
+        <input data-theme="b" data-icon="gear" data-iconpos="left" value="Take picture of leak" type="submit" onclick="takePicture();" />
+        <a data-role="button" data-transition="none" data-theme="b" href="#home" data-icon="gear" data-iconpos="left">
+          Report Leak
+        </a>      
+
+         <a data-role="button" data-transition="none" data-theme="b" href="#comment" data-icon="arrow-r" data-iconpos="left">
+          Include a Comment
+        </a>      
+        <a data-role="button" data-transition="none" data-theme="b" href="#home" data-icon="home" data-iconpos="left">
+          Return to Home
+        </a>      
+
+      </div>
+    </div>
+
+    <div data-role="page" id="comment" data-add-back-btn="true">
+      <div data-theme="b" data-role="header" data-position="fixed">
+          <h3>
+              WASA Leak Reporter
+          </h3>
+          <a data-role="button" data-transition="none" href="javascript:exitApp()" data-icon="delete"
+             data-iconpos="left" class="ui-btn-right">Exit</a>          
+      </div>
+      <div data-role="content" style="padding: 15px">
+          <h2>
+              Comment
+          </h2>
+                  <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup">
+                <label for="textarea1">
+                    Comment
+                </label>
+                <textarea name="commenttext" id="commentext" placeholder="">
+                </textarea>
+            </fieldset>
+        </div>
+        <a data-role="button" data-transition="none" data-theme="b" href="#home" data-icon="gear" data-iconpos="left">
+          Report Leak
+        </a>      
+
+         <a data-role="button" data-transition="none" data-theme="b" href="#picture" data-icon="arrow-r" data-iconpos="left">
+          Include a Picture
+        </a>      
+        <a data-role="button" data-transition="none" data-theme="b" href="#home" data-icon="home" data-iconpos="left">
+          Return to Home
+        </a>      
+
+      </div>
+    </div>
+    
+    <div data-role="page" id="hotline" data-add-back-btn="true">
+      <div data-theme="b" data-role="header" data-position="fixed">
+          <h3>
+              WASA Leak Reporter
+          </h3>
+          <a data-role="button" data-transition="none" href="javascript:exitApp()" data-icon="delete"
+             data-iconpos="left" class="ui-btn-right">Exit</a>          
+      </div>
+      <div data-role="content" style="padding: 15px;">
+          <h2>
+              Hotline
+          </h2>
+          <div class="ui-grid-a">
+              <div class="ui-block-a" style="text-align: center; line-height:4em">
+              Call 800-4H2O
+              </div>
+              <div class="ui-block-b">
+                  <a data-role="button" data-transition="fade" data-theme="b" href="tel:8004426" data-icon="forward" data-iconpos="left">
+                      8004426
+                  </a>
+              </div>
+              <div class="ui-block-a" style="text-align: center; line-height:4em">
+              Call 800-LEAK
+              </div>
+              <div class="ui-block-b">
+                  <a data-role="button" data-transition="fade" data-theme="b" href="tel:8005325" data-icon="forward" data-iconpos="left">
+                      8005325
+                  </a>
+              </div>
+          </div>
+          <p>The hotline is available daily including holidays - 24 Hours and is located at Head Office, Farm Road, St. Joseph.</p>
+        <a data-role="button" data-transition="none" data-theme="b" href="#home" data-icon="home" data-iconpos="left">
+          Return to Home
+        </a>  
+      </div>
+    </div>
+
+    <div data-role="page" id="about" data-add-back-btn="true">
+      <div data-theme="b" data-role="header" data-position="fixed">
+          <h3>
+              WASA Leak Reporter
+          </h3>
+          <a data-role="button" data-transition="none" href="javascript:exitApp()" data-icon="delete"
+             data-iconpos="left" class="ui-btn-right">Exit</a>          
+      </div>
+      <div data-role="content" style="padding: 15px">
+          <h2>
+              About
+          </h2>
+          <div style="float:right">
+              <img src="images/WASA-Logo.gif" />
+          </div>
+			    <h2>Unofficial WASA leak reporter</h2>
+			<h2>Author: Christopher Ottley</h2>
+			<p>Use your mobile phone to send WASA an email with a picture and exact GPS co-ordinates of the location of a leak in on your property or in your community.</p>
+			<p>Important Notes:
+              <ol><li>GPS does not function very well indoors</li>
+			      <li>Internet access is required to submit leak report</li>
+				  <li>File and Camera access is required for the picture</li>
+			  </ol>
+			</p>
+			<p>This application sends the following information unencrypted over the Internet to <a href="mailto:customercomplaint@wasa.gov.tt">customercomplaint@wasa.gov.tt</a>
+			<ul><li>GPS Location</li>
+			    <li>Name</li>
+				<li>Email address</li>
+				<li>Contact number (if specified)</li>
+				<li>Picture of leak (if specified)</li>
+			</ul>
+      The GPS Location is used to identify the leak location and using a map service, a map of the area with the point highlighted is included in the email.
+			</p>
+        <div data-role="collapsible-set" data-theme="b" data-content-theme="">
+            <div data-role="collapsible" data-collapsed="true">
+                <h3>
+                    License
+                </h3>
+<p>Portions Copyright (c) 2012, Christopher Ottley<br/>All rights reserved.</p>
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+            </div>
+        </div>
+        <a data-role="button" data-transition="none" data-theme="b" href="#home" data-icon="home" data-iconpos="left">
+          Return to Home
+        </a>          
+      </div>
+    </div>
+    
+    <div data-role="page" id="options" data-add-back-btn="true">
+      <div data-theme="b" data-role="header" data-position="fixed">
+          <h3>
+              WASA Leak Reporter
+          </h3>
+          <a data-role="button" data-transition="none" href="javascript:exitApp()" data-icon="delete"
+             data-iconpos="left" class="ui-btn-right">Exit</a>          
+      </div>
+      <div data-role="content" style="padding: 15px">
+          <h2>
+              Options
+          </h2>
+        <a data-role="button" data-transition="none" data-theme="b" href="#home" data-icon="home" data-iconpos="left">
+          Return to Home
+        </a>  
+      </div>
+    </div>
+
+    <div data-role="page" id="diagnostics" data-add-back-btn="true">
+      <div data-theme="b" data-role="header" data-position="fixed">
+          <h3>
+              WASA Leak Reporter
+          </h3>
+          <a data-role="button" data-transition="none" href="javascript:exitApp()" data-icon="delete"
+             data-iconpos="left" class="ui-btn-right">Exit</a>          
+      </div>
+      <div data-role="content" style="padding: 15px">
+          <h2>
+              Diagnostics
+          </h2>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="textinputlat">
+                            GPS Co-ordinate Lat:
+                        </label>
+                        <input id="textinputlat" placeholder="" value="" type="text" readonly="readonly"/>
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="textinputlon">
+                            GPS Co-ordinate Lon:
+                        </label>
+                        <input id="textinputlon" placeholder="" value="" type="text" readonly="readonly"/>
+                    </fieldset>
+                </div>
+        <a data-role="button" data-transition="none" data-theme="b" href="#home" data-icon="home" data-iconpos="left">
+          Return to Home
+        </a>  
+      </div>
+    </div>
+    
+  </body>
+</html>

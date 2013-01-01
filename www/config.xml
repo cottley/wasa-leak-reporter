@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns		= "http://www.w3.org/ns/widgets"
+	xmlns:gap	= "http://phonegap.com/ns/1.0"
+	id		= "com.referencelogic.mobile.wasa.leak"
+	version 	= "1.0.4">
+
+	<name>WASA-Leak-Reporter</name>
+
+	<description>
+		Report leaks to WASA over the Internet
+	</description>
+
+	<author href="http://www.referencelogic.com/"
+		email="mobile@referencelogic.com">
+		Christopher Ottley
+	</author>
+
+	<icon src="images/WASA-Logo.png" gap:role="default" width="72" height="72"/>
+	
+	<gap:splash src="splash.png" />
+
+	<feature name="http://api.phonegap.com/1.0/geolocation"/>
+	<feature name="http://api.phonegap.com/1.0/network"/>
+	<feature name="http://api.phonegap.com/1.0/camera"/>
+	<feature name="http://api.phonegap.com/1.0/file"/>
+
+	<preference name="orientation" value="portrait" />
+  <preference name="phonegap-version" value="2.0.0" />
+</widget>
