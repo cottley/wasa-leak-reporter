@@ -73,7 +73,18 @@ function init() {
     getLocation();            
 }
 
-    
+function reportLeak() {
+  $.post('http://mobileapps.referencelogic.com/wasa-leak-reporter/json-api/add.php', 
+          {email: document.getElementById("textinputemail").value,
+           name: document.getElementById("textinputname").value,
+           contactno: document.getElementById("textinputcontactno").value,
+           lat: document.getElementById("textinputlat").value,
+           lon: document.getElementById("textinputlon").value},
+            function(output){
+                alert(output);
+            }
+        );
+}    
     
 
 /*
