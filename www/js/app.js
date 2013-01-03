@@ -79,7 +79,8 @@ function reportLeak() {
            name: document.getElementById("textinputname").value,
            contactno: document.getElementById("textinputcontactno").value,
            lat: document.getElementById("textinputlat").value,
-           lon: document.getElementById("textinputlon").value},
+           lon: document.getElementById("textinputlon").value,
+           comment: document.getElementById("commenttext").value},
             function(output){
                 alert(output);
             }
