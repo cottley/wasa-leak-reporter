@@ -85,7 +85,7 @@ function reportLeak() {
             function(output){
                 alert(output);
             }
-        );
+        ).error(function() { alert("Could not report leak..."); });
 }    
     
 
