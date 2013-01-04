@@ -75,7 +75,7 @@ function init() {
 
 function reportLeak() {
   alert("Trying to report leak...");
-  $.post('http://mobileapps.referencelogic.com/wasa-leak-reporter/json-api/add.php', 
+  $.get('http://mobileapps.referencelogic.com/wasa-leak-reporter/json-api/add.php', 
           {email: document.getElementById("textinputemail").value,
            name: document.getElementById("textinputname").value,
            contactno: document.getElementById("textinputcontactno").value,
