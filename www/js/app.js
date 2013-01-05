@@ -58,7 +58,14 @@
                         'Exit WASA Leak Reporter', 
                         'Yes,No'  
                     );
-    }
+    };
+
+
+  function getContactData() {
+    document.getElementById("textinputemail").value = "" + localStorage.getItem("wlremail");
+    document.getElementById("textinputname").value = "" + localStorage.getItem("wlrname");
+    document.getElementById("textinputcontactno").value = "" + localStorage.getItem("wlrcontactno");
+  }
     
 function init() {
  
@@ -70,12 +77,18 @@ function init() {
                         'OK,Cancel'  
                     );
             }, true); 
-    getLocation();            
+   getLocation();
+   getContactData();
+   
+   $("#textinputemail").change(function() { localStorage.setItem("wlremail", "" + document.getElementById("textinputemail").value); });
+   $("#textinputname").change(function() { localStorage.setItem("wlrname", "" + document.getElementById("textinputname").value); });
+   $("#textinputcontactno").change(function() { localStorage.setItem("wlrcontactno", "" + document.getElementById("textinputcontactno").value); });
+       
 }
 
 function reportLeak() {
   navigator.notification.vibrate();
-  $.get('http://mobileapps.referencelogic.com/wasa-leak-reporter/json-api/add.php', 
+  $.post('http://mobileapps.referencelogic.com/wasa-leak-reporter/json-api/add.php', 
           {email: document.getElementById("textinputemail").value,
            name: document.getElementById("textinputname").value,
            contactno: document.getElementById("textinputcontactno").value,
