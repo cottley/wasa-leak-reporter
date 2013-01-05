@@ -62,9 +62,16 @@
 
 
   function getContactData() {
+
     document.getElementById("textinputemail").value = "" + localStorage.getItem("wlremail");
+    if ( document.getElementById("textinputemail").value == "null") { document.getElementById("textinputemail").value = ""; }
+
     document.getElementById("textinputname").value = "" + localStorage.getItem("wlrname");
+    if ( document.getElementById("textinputname").value == "null") { document.getElementById("textinputname").value = ""; }
+
     document.getElementById("textinputcontactno").value = "" + localStorage.getItem("wlrcontactno");
+    if ( document.getElementById("textinputcontactno").value == "null") { document.getElementById("textinputcontactno").value = ""; }
+
   }
     
 function init() {
