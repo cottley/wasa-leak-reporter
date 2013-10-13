@@ -94,15 +94,19 @@ function init() {
 }
 
 function sendEmail(){
-  var subject = "Reporting leak";
-  var body = "<html><body><h1>Test</h1></body></html>";
-  var toRecipients = ["test@test.com"];
-  var ccRecipients = [];
-  var bccRecipients = [];
-  var isHtml = true;
-  var attachments = [];
-  var attachmentsData = [];
-  window.plugins.emailComposer.showEmailComposerWithCallback(sendToWebsite,subject,body,toRecipients,ccRecipients,bccRecipients,isHtml,attachments,attachmentsData);
+  try {
+    var subject = "Reporting leak";
+    var body = "<html><body><h1>Test</h1></body></html>";
+    var toRecipients = ["test@test.com"];
+    var ccRecipients = [];
+    var bccRecipients = [];
+    var isHtml = true;
+    var attachments = [];
+    var attachmentsData = [];
+    window.plugins.emailComposer.showEmailComposerWithCallback(sendToWebsite,subject,body,toRecipients,ccRecipients,bccRecipients,isHtml,attachments,attachmentsData);
+  } catch (ex) {
+    alert(ex);
+  }
 }
 
 function sendToWebsite(emailsendresult) {
@@ -123,7 +127,7 @@ function sendToWebsite(emailsendresult) {
 }
 
 function reportLeak() {
-  navigator.notification.vibrate();
+  //navigator.notification.vibrate();
   sendEmail();
  
 }    
