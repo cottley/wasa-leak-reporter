@@ -95,24 +95,36 @@ function init() {
 
 function sendEmail(){
   try {
+    var contactmessage = "";
+    if (document.getElementById("textinputcontactno").value != "") {
+      contactmessage = "You can contact me at " + document.getElementById("textinputcontactno").value + ".";
+    }
+    var commenttext =  document.getElementById("commenttext").value;
     var subject = "Reporting leak";
-    var body = "<html><body><h1>Test</h1></body></html>";
-    var toRecipients = ["test@test.com"];
+    var body = "<html><body><p>Dear WASA,<br/>I would like to report a leak at the GPS co-ordinates:<br/>Latitude: " +
+      document.getElementById("textinputlat").value + "<br/>Longitude: " + document.getElementById("textinputlon").value +
+      "</p><p>You can see the location from the map below: <br/><img src='" +
+      "http://ojw.dev.openstreetmap.org/StaticMap/?mlat=" + document.getElementById("textinputlat").value + "&mlon=" +
+       document.getElementById("textinputlon").value +"&zoom=16&layers=M&show=1&size=288x288" + "'/> </p>" + 
+       "<p>" + commenttext + "</p>" +
+       "<p>" + contactmessage + "</p></body></html>";
+    var toRecipients = ["customercomplaint@wasa.gov.tt"];
     var ccRecipients = [];
     var bccRecipients = [];
     var isHtml = true;
     var attachments = [];
     var attachmentsData = [];
-    window.plugins.emailComposer.showEmailComposerWithCallback(function(result){alert(result);},subject,body,toRecipients,ccRecipients,bccRecipients,isHtml,attachments,attachmentsData);
+    window.plugins.emailComposer.showEmailComposerWithCallback(null,subject,body,toRecipients,ccRecipients,bccRecipients,isHtml,attachments,attachmentsData);
+    
   } catch (ex) {
     alert(ex);
   }
 }
 
-function sendToWebsite(emailsendresult) {
-  alert(emailsendresult);
-/*
- $.post('http://mobileapps.referencelogic.com/wasa-leak-reporter/json-api/add.php', 
+function sendToWebsite() {
+  var result = true;
+  /*
+  $.post('http://mobileapps.referencelogic.com/wasa-leak-reporter/json-api/add.php', 
           {email: document.getElementById("textinputemail").value,
            name: document.getElementById("textinputname").value,
            contactno: document.getElementById("textinputcontactno").value,
@@ -122,14 +134,15 @@ function sendToWebsite(emailsendresult) {
             function(output){
                 alert(output);
             }
-        ).error(function() { alert("Could not report leak... Ensure you have an active Internet connection..."); });
-*/
+        ).error(function() { alert("Could not report leak... Ensure you have an active Internet connection..."); result=false; });
+        */
+  return result;
 }
 
 function reportLeak() {
-  //navigator.notification.vibrate();
-  sendEmail();
- 
+  if (sendToWebsite()) {
+    sendEmail();
+  }
 }    
     
 
