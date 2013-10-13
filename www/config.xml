@@ -2,7 +2,7 @@
 <widget xmlns		= "http://www.w3.org/ns/widgets"
 	xmlns:gap	= "http://phonegap.com/ns/1.0"
 	id		= "com.referencelogic.mobile.wasa.leak"
-	version 	= "1.0.4">
+	version 	= "1.0.5">
 
 	<name>WASA-Leak-Reporter</name>
 
@@ -27,5 +27,5 @@
 	<gap:plugin name="com.phonegap.plugins.emailcomposer" />
 
 	<preference name="orientation" value="portrait" />
-  <preference name="phonegap-version" value="2.0.0" />
+    <preference name="phonegap-version" value="2.9.0" />
 </widget>
