@@ -93,6 +93,29 @@ function init() {
        
 }
 
+/*
+Originally from http://stackoverflow.com/questions/934012/get-image-data-in-javascript
+*/
+function getBase64Image(img) {
+    // Create an empty canvas element
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    // Copy the image contents to the canvas
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+
+    // Get the data-URL formatted image
+    // Firefox supports PNG and JPEG. You could check img.src to
+    // guess the original format, but be aware the using "image/jpg"
+    // will re-encode the image.
+    var dataURL = canvas.toDataURL("image/png");
+
+    //return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+    return dataURL;
+}
+
 function sendEmail(){
   try {
     var contactmessage = "";
@@ -112,11 +135,11 @@ function sendEmail(){
     var isHtml = true;
     //var attachments = ["http://ojw.dev.openstreetmap.org/StaticMap/?mlat=" + document.getElementById("textinputlat").value + "&mlon=" +
     //   document.getElementById("textinputlon").value +"&zoom=16&layers=M&show=1&size=288x288"];
-    var attachments = [];
+    var attachments = ['map.png'];
     if (document.getElementById('camera_status').innerHTML == "") {
       attachments = [document.getElementById('camera_image').src];
     }
-    var attachmentsData = [];
+    var attachmentsData = [getBase64Image(document.getElementById("mapimage"))];
     window.plugins.emailComposer.showEmailComposerWithCallback(null,subject,body,toRecipients,ccRecipients,bccRecipients,isHtml,attachments,attachmentsData);
     
   } catch (ex) {
