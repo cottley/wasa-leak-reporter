@@ -102,7 +102,7 @@ function sendEmail(){
   var isHtml = true;
   var attachments = [];
   var attachmentsData = [];
-  window.plugins.emailComposer.showEmailComposerWithCallback(callback,subject,body,toRecipients,ccRecipients,bccRecipients,isHtml,attachments,attachmentsData);
+  window.plugins.emailComposer.showEmailComposerWithCallback(sendToWebsite,subject,body,toRecipients,ccRecipients,bccRecipients,isHtml,attachments,attachmentsData);
 }
 
 function sendToWebsite(emailsendresult) {
