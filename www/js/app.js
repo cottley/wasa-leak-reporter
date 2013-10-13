@@ -112,8 +112,7 @@ function getBase64Image(img) {
     // will re-encode the image.
     var dataURL = canvas.toDataURL("image/png");
 
-    //return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-    return dataURL;
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
 
 function sendEmail(){
