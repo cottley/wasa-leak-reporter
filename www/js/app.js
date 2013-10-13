@@ -93,9 +93,22 @@ function init() {
        
 }
 
-function reportLeak() {
-  navigator.notification.vibrate();
-  $.post('http://mobileapps.referencelogic.com/wasa-leak-reporter/json-api/add.php', 
+function sendEmail(){
+  var subject = "Reporting leak";
+  var body = "<html><body><h1>Test</h1></body></html>";
+  var toRecipients = ["test@test.com"];
+  var ccRecipients = [];
+  var bccRecipients = [];
+  var isHtml = true;
+  var attachments = [];
+  var attachmentsData = [];
+  window.plugins.emailComposer.showEmailComposerWithCallback(callback,subject,body,toRecipients,ccRecipients,bccRecipients,isHtml,attachments,attachmentsData);
+}
+
+function sendToWebsite(emailsendresult) {
+  alert(emailsendresult);
+/*
+ $.post('http://mobileapps.referencelogic.com/wasa-leak-reporter/json-api/add.php', 
           {email: document.getElementById("textinputemail").value,
            name: document.getElementById("textinputname").value,
            contactno: document.getElementById("textinputcontactno").value,
@@ -106,6 +119,13 @@ function reportLeak() {
                 alert(output);
             }
         ).error(function() { alert("Could not report leak... Ensure you have an active Internet connection..."); });
+*/
+}
+
+function reportLeak() {
+  navigator.notification.vibrate();
+  sendEmail();
+ 
 }    
     
 
