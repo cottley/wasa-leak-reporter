@@ -125,21 +125,15 @@ function sendEmail(){
     var subject = "Reporting leak";
     var body = "<html><body><p>Dear WASA,<br/>I would like to report a leak at the GPS co-ordinates:<br/>Latitude: " +
       document.getElementById("textinputlat").value + "<br/>Longitude: " + document.getElementById("textinputlon").value +
-      "</p><p>You can see the location from the map attached.<br/> </p>" + 
+      "</p><p>You can see the location from the map attached.<br/> </p>" +
+      "<p>You can see a <a href='http://ojw.dev.openstreetmap.org/StaticMap/?mlat=" + document.getElementById("textinputlat").value + "&mlon=" + document.getElementById("textinputlon").value + "&zoom=16&layers=M&show=1&size=800x800'>larger map</a> if you would like as well.<br/> </p>" + 
        "<p>" + commenttext + "</p>" +
        "<p>" + contactmessage + "</p></body></html>";
     var toRecipients = ["customercomplaint@wasa.gov.tt"];
     var ccRecipients = [];
     var bccRecipients = [];
     var isHtml = true;
-    //var attachments = ["http://ojw.dev.openstreetmap.org/StaticMap/?mlat=" + document.getElementById("textinputlat").value + "&mlon=" +
-    //   document.getElementById("textinputlon").value +"&zoom=16&layers=M&show=1&size=288x288"];
     var attachments = [];
-/*
-    if (document.getElementById('camera_image').src != "") {
-      attachments = [document.getElementById('camera_image').src.replace(/^file:\/\//, "")];
-    }
-*/
     var attachmentsData = [['map.jpg', getBase64Image(document.getElementById("mapimage"))]];
     if (document.getElementById('camera_image').src != "") {
       attachmentsData.push(['pictureofleak.jpg', getBase64Image(document.getElementById('camera_image'))]);
