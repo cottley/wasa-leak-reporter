@@ -141,7 +141,8 @@ function sendEmail(){
     if (document.getElementById('camera_image').src != "") {
       attachments = [document.getElementById('camera_image').src];
     }
-    var attachmentsData = [['map.jpg', getBase64Image(document.getElementById("mapimage"))]];
+    var attachmentsData = null;
+    // var attachmentsData = [['map.jpg', getBase64Image(document.getElementById("mapimage"))]];
     window.plugins.emailComposer.showEmailComposerWithCallback(null,subject,body,toRecipients,ccRecipients,bccRecipients,isHtml,attachments,attachmentsData);
     
   } catch (ex) {
