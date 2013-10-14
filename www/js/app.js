@@ -149,9 +149,9 @@ function sendToWebsite() {
   var result = true;
   /*
   $.post('http://mobileapps.referencelogic.com/wasa-leak-reporter/json-api/add.php', 
-          {email: document.getElementById("textinputemail").value,
-           name: document.getElementById("textinputname").value,
-           contactno: document.getElementById("textinputcontactno").value,
+          {email: "anonymous@email.com",
+           name: "Anonymous",
+           contactno: "555-5555",
            lat: document.getElementById("textinputlat").value,
            lon: document.getElementById("textinputlon").value,
            comment: document.getElementById("commenttext").value},
