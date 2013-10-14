@@ -118,9 +118,6 @@ function getBase64Image(img) {
 function sendEmail(){
   try {
     var contactmessage = "";
-    if (document.getElementById('camera_image').src != "") {
-      alert("Attaching Picture from Camera\n" + document.getElementById('camera_image').src.replace(/^file:\/\//, ""));
-    }
     if (document.getElementById("textinputcontactno").value != "") {
       contactmessage = "You can contact me at " + document.getElementById("textinputcontactno").value + ".";
     }
@@ -141,8 +138,7 @@ function sendEmail(){
     if (document.getElementById('camera_image').src != "") {
       attachments = [document.getElementById('camera_image').src.replace(/^file:\/\//, "")];
     }
-    var attachmentsData = null;
-    // var attachmentsData = [['map.jpg', getBase64Image(document.getElementById("mapimage"))]];
+    var attachmentsData = [['map.jpg', getBase64Image(document.getElementById("mapimage"))]];
     window.plugins.emailComposer.showEmailComposerWithCallback(null,subject,body,toRecipients,ccRecipients,bccRecipients,isHtml,attachments,attachmentsData);
     
   } catch (ex) {
