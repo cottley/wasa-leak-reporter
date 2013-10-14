@@ -121,6 +121,10 @@ function sendEmail(){
     if (document.getElementById("textinputcontactno").value != "") {
       contactmessage = "You can contact me at " + document.getElementById("textinputcontactno").value + ".";
     }
+    var contactname = "";
+    if (document.getElementById("textinputname").value != "") {
+      contactname = "<br/><br/>" + document.getElementById("textinputname").value;
+    }
     var commenttext =  document.getElementById("commenttext").value;
     var subject = "Reporting leak";
     var body = "<html><body><p>Dear WASA,<br/>I would like to report a leak at the GPS co-ordinates:<br/>Latitude: " +
@@ -128,14 +132,17 @@ function sendEmail(){
       "</p><p>You can see the location from the map attached.<br/> </p>" +
       "<p>You can see a <a href='http://ojw.dev.openstreetmap.org/StaticMap/?mlat=" + document.getElementById("textinputlat").value + "&mlon=" + document.getElementById("textinputlon").value + "&zoom=16&layers=M&show=1&size=800x800'>larger map</a> if you would like as well.<br/> </p>" + 
        "<p>" + commenttext + "</p>" +
-       "<p>" + contactmessage + "</p></body></html>";
+       "<p>" + contactmessage + "</p>" +
+       "<p>" + contactname + "</p>" +
+       "<p><br/><small>...with assistance from the unofficial WASA leak reporter</small></p>" + 
+       "</body></html>";
     var toRecipients = ["customercomplaint@wasa.gov.tt"];
     var ccRecipients = [];
     var bccRecipients = [];
     var isHtml = true;
     var attachments = [];
     var attachmentsData = [['map.jpg', getBase64Image(document.getElementById("mapimage"))]];
-    if (document.getElementById('camera_image').src != "") {
+    if (document.getElementById('camera_image').src.indexOf('file:') == 0) {
       attachmentsData.push(['pictureofleak.jpg', getBase64Image(document.getElementById('camera_image'))]);
     }
     window.plugins.emailComposer.showEmailComposerWithCallback(null,subject,body,toRecipients,ccRecipients,bccRecipients,isHtml,attachments,attachmentsData);
