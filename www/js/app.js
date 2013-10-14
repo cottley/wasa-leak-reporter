@@ -119,7 +119,7 @@ function sendEmail(){
   try {
     var contactmessage = "";
     if (document.getElementById('camera_image').src != "") {
-      alert("Attaching Picture from Camera\n" + document.getElementById('camera_image').src);
+      alert("Attaching Picture from Camera\n" + document.getElementById('camera_image').src.replace(/^file:\/\//, ""));
     }
     if (document.getElementById("textinputcontactno").value != "") {
       contactmessage = "You can contact me at " + document.getElementById("textinputcontactno").value + ".";
@@ -139,7 +139,7 @@ function sendEmail(){
     //   document.getElementById("textinputlon").value +"&zoom=16&layers=M&show=1&size=288x288"];
     var attachments = [];
     if (document.getElementById('camera_image').src != "") {
-      attachments = [document.getElementById('camera_image').src];
+      attachments = [document.getElementById('camera_image').src.replace(/^file:\/\//, "")];
     }
     var attachmentsData = null;
     // var attachmentsData = [['map.jpg', getBase64Image(document.getElementById("mapimage"))]];
