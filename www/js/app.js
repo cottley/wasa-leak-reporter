@@ -118,6 +118,9 @@ function getBase64Image(img) {
 function sendEmail(){
   try {
     var contactmessage = "";
+    if (document.getElementById('camera_image').src != "") {
+      alert("Attaching Picture from Camera\n" + document.getElementById('camera_image').src);
+    }
     if (document.getElementById("textinputcontactno").value != "") {
       contactmessage = "You can contact me at " + document.getElementById("textinputcontactno").value + ".";
     }
@@ -135,7 +138,7 @@ function sendEmail(){
     //var attachments = ["http://ojw.dev.openstreetmap.org/StaticMap/?mlat=" + document.getElementById("textinputlat").value + "&mlon=" +
     //   document.getElementById("textinputlon").value +"&zoom=16&layers=M&show=1&size=288x288"];
     var attachments = [];
-    if (document.getElementById('camera_status').innerHTML == "") {
+    if (document.getElementById('camera_image').src != "") {
       attachments = [document.getElementById('camera_image').src];
     }
     var attachmentsData = [['map.jpg', getBase64Image(document.getElementById("mapimage"))]];
