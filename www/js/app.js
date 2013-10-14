@@ -32,7 +32,7 @@
                 img.style.visibility = "visible";
                 img.style.display = "block";
                 img.src = uri;
-                document.getElementById('camera_status').innerHTML = "";
+                document.getElementById('camera_status').innerHTML = "Acquired picture.";
             },
             function(e) {
                 console.log("Error getting picture: " + e);
@@ -142,7 +142,7 @@ function sendEmail(){
     var isHtml = true;
     var attachments = [];
     var attachmentsData = [['map.jpg', getBase64Image(document.getElementById("mapimage"))]];
-    if (document.getElementById('camera_image').src.indexOf('file:') == 0) {
+    if (document.getElementById('camera_status').innerHTML == "Acquired picture.") {
       attachmentsData.push(['pictureofleak.jpg', getBase64Image(document.getElementById('camera_image'))]);
     }
     window.plugins.emailComposer.showEmailComposerWithCallback(null,subject,body,toRecipients,ccRecipients,bccRecipients,isHtml,attachments,attachmentsData);
