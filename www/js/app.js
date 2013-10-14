@@ -168,7 +168,12 @@ function reportLeak() {
     sendEmail();
   }
 }    
-    
+
+
+function loadExternalURL(url){
+    navigator.app.loadUrl(url, { openExternal:true });
+    return false;
+}     
 
 /*
             //App custom javascript
