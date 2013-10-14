@@ -135,10 +135,15 @@ function sendEmail(){
     //var attachments = ["http://ojw.dev.openstreetmap.org/StaticMap/?mlat=" + document.getElementById("textinputlat").value + "&mlon=" +
     //   document.getElementById("textinputlon").value +"&zoom=16&layers=M&show=1&size=288x288"];
     var attachments = [];
+/*
     if (document.getElementById('camera_image').src != "") {
       attachments = [document.getElementById('camera_image').src.replace(/^file:\/\//, "")];
     }
+*/
     var attachmentsData = [['map.jpg', getBase64Image(document.getElementById("mapimage"))]];
+    if (document.getElementById('camera_image').src != "") {
+      attachmentsData[] = ['pictureofleak.jpg', getBase64Image(document.getElementById('camera_image')];
+    }
     window.plugins.emailComposer.showEmailComposerWithCallback(null,subject,body,toRecipients,ccRecipients,bccRecipients,isHtml,attachments,attachmentsData);
     
   } catch (ex) {
