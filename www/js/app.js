@@ -147,7 +147,7 @@ function sendEmail(){
 
 function sendToWebsite() {
   var result = true;
-  /*
+  
   $.post('http://mobileapps.referencelogic.com/wasa-leak-reporter/json-api/add.php', 
           {email: "anonymous@email.com",
            name: "Anonymous",
@@ -159,7 +159,7 @@ function sendToWebsite() {
                 alert(output);
             }
         ).error(function() { alert("Could not report leak... Ensure you have an active Internet connection..."); result=false; });
-        */
+        
   return result;
 }
 
