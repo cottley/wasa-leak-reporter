@@ -62,10 +62,10 @@
 
 
   function getContactData() {
-
+/*
     document.getElementById("textinputemail").value = "" + localStorage.getItem("wlremail");
     if ( document.getElementById("textinputemail").value == "null") { document.getElementById("textinputemail").value = ""; }
-
+*/
     document.getElementById("textinputname").value = "" + localStorage.getItem("wlrname");
     if ( document.getElementById("textinputname").value == "null") { document.getElementById("textinputname").value = ""; }
 
@@ -87,7 +87,7 @@ function init() {
    getLocation();
    getContactData();
    
-   $("#textinputemail").change(function() { localStorage.setItem("wlremail", "" + document.getElementById("textinputemail").value); });
+  // $("#textinputemail").change(function() { localStorage.setItem("wlremail", "" + document.getElementById("textinputemail").value); });
    $("#textinputname").change(function() { localStorage.setItem("wlrname", "" + document.getElementById("textinputname").value); });
    $("#textinputcontactno").change(function() { localStorage.setItem("wlrcontactno", "" + document.getElementById("textinputcontactno").value); });
        
