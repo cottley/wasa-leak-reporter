@@ -142,7 +142,7 @@ function sendEmail(){
 */
     var attachmentsData = [['map.jpg', getBase64Image(document.getElementById("mapimage"))]];
     if (document.getElementById('camera_image').src != "") {
-      attachmentsData[] = ['pictureofleak.jpg', getBase64Image(document.getElementById('camera_image'))];
+      attachmentsData.push(['pictureofleak.jpg', getBase64Image(document.getElementById('camera_image'))]);
     }
     window.plugins.emailComposer.showEmailComposerWithCallback(null,subject,body,toRecipients,ccRecipients,bccRecipients,isHtml,attachments,attachmentsData);
     
