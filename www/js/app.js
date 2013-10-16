@@ -115,6 +115,10 @@ function getBase64Image(img) {
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
 
+function getMapName() {
+  return 'map.' + new Date().getTime() + '.jpg';
+}
+
 function sendEmail(){
   try {
     var contactmessage = "";
@@ -141,7 +145,7 @@ function sendEmail(){
     var bccRecipients = [];
     var isHtml = true;
     var attachments = [];
-    var attachmentsData = [['map.jpg', getBase64Image(document.getElementById("mapimage"))]];
+    var attachmentsData = [[getMapName(), getBase64Image(document.getElementById("mapimage"))]];
     if (document.getElementById('camera_status').innerHTML == "Acquired picture.") {
       attachmentsData.push(['pictureofleak.jpg', getBase64Image(document.getElementById('camera_image'))]);
     }
