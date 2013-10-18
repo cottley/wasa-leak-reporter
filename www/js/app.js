@@ -158,8 +158,8 @@ function sendEmail(){
 
 function sendToWebsite() {
   
-  if ((document.getElementById("textinputlat").value != "") &&
-      (document.getElementById("textinputlon").value != "")) {
+  if ((document.getElementById("textinputlat").value != "Unable to get latitude") &&
+      (document.getElementById("textinputlon").value != "Unable to get longitude")) {
   $.post('http://mobileapps.referencelogic.com/wasa-leak-reporter/json-api/add.php', 
           {email: "anonymous@email.com",
            name: "Anonymous",
