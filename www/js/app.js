@@ -158,6 +158,8 @@ function sendEmail(){
 
 function sendToWebsite() {
   
+  if ((document.getElementById("textinputlat").value != "") &&
+      (document.getElementById("textinputlon").value != "")) {
   $.post('http://mobileapps.referencelogic.com/wasa-leak-reporter/json-api/add.php', 
           {email: "anonymous@email.com",
            name: "Anonymous",
@@ -170,7 +172,9 @@ function sendToWebsite() {
                 sendEmail();
             }
         ).error(function() { alert("Could not report leak... Ensure you have an active Internet connection..."); });
-        
+   } else {
+     alert("Could not get GPS location, please check or enable GPS to continue...");
+   }     
 }
 
 function reportLeak() {
